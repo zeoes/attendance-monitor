@@ -14,6 +14,7 @@ sentry {
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
+    version "0.1";
 
     defaultConfig {
         applicationId "com.example.barcodescanner"
@@ -32,6 +33,9 @@ android {
         }
 
         buildConfigField "boolean", "ERROR_REPORTS_ENABLED_BY_DEFAULT", "true"
+
+        //archivesBaseName "attendance-monitor-v0.1"
+        archivesBaseName = "attendance-monitor-v0.1-"
     }
 
     compileOptions {

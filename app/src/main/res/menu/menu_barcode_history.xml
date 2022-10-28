@@ -10,6 +10,7 @@
         app:iconTint="@color/toolbar_menu_color"
         app:showAsAction="never"
         />
+    <!--
     <item
         android:id="@+id/item_clear_history"
         android:title="@string/fragment_barcode_history_menu_title_delete_all"
@@ -17,4 +18,5 @@
         app:iconTint="@color/toolbar_menu_color"
         app:showAsAction="never"
         />
+     -->
 </menu>

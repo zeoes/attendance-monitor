@@ -115,8 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_medium"
                 />
-
-            <!--Specific buttons-->
+            <!--
             <com.example.barcodescanner.feature.common.view.IconButton
                 android:id="@+id/button_search_on_web"
                 android:layout_width="match_parent"
@@ -367,14 +366,12 @@
                 android:visibility="gone"
                 tools:visibility="visible"
                 />
-
-            <!--General-->
             <com.example.barcodescanner.feature.common.view.IconButton
                 android:id="@+id/button_share_as_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:iconBackground="@color/green"
-                app:icon="@drawable/ic_share"
+                android:icon="@drawable/ic_qr_code"
                 app:text="@string/activity_barcode_share_as_text"
                 />
             <com.example.barcodescanner.feature.common.view.IconButton
@@ -425,6 +422,7 @@
                 app:iconBackground="@color/blue"
                 app:text="@string/activity_barcode_print"
                 />
+                -->
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

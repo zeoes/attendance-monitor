@@ -55,28 +55,28 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        supportEdgeToEdge()
+        //supportEdgeToEdge()
         setDarkStatusBar()
         initScanner()
-        initFlashButton()
-        handleScanFromFileClicked()
-        handleZoomChanged()
-        handleDecreaseZoomClicked()
-        handleIncreaseZoomClicked()
+        //initFlashButton()
+        //handleScanFromFileClicked()
+        //handleZoomChanged()
+        //handleDecreaseZoomClicked()
+        //handleIncreaseZoomClicked()
         requestPermissions()
     }
 
     override fun onResume() {
         super.onResume()
         if (areAllPermissionsGranted()) {
-            initZoomSeekBar()
+            //initZoomSeekBar()
             codeScanner.startPreview()
         }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (requestCode == PERMISSION_REQUEST_CODE && areAllPermissionsGranted(grantResults)) {
-            initZoomSeekBar()
+            //initZoomSeekBar()
             codeScanner.startPreview()
         }
     }
@@ -100,10 +100,11 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
         disposable.clear()
     }
 
+    /*
     private fun supportEdgeToEdge() {
         image_view_flash.applySystemWindowInsets(applyTop = true)
         image_view_scan_from_file.applySystemWindowInsets(applyTop = true)
-    }
+    }*/
 
     private fun setDarkStatusBar() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -155,27 +156,28 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
         }
     }
 
-    private fun initZoomSeekBar() {
+    /*private fun initZoomSeekBar() {
         scannerCameraHelper.getCameraParameters(settings.isBackCamera)?.apply {
             this@ScanBarcodeFromCameraFragment.maxZoom = maxZoom
             seek_bar_zoom.max = maxZoom
             seek_bar_zoom.progress = zoom
         }
-    }
+    }*/
 
     private fun initFlashButton() {
-        layout_flash_container.setOnClickListener {
+        /*layout_flash_container.setOnClickListener {
             toggleFlash()
         }
-        image_view_flash.isActivated = settings.flash
+        image_view_flash.isActivated = settings.flash*/
     }
 
-    private fun handleScanFromFileClicked() {
+    /*private fun handleScanFromFileClicked() {
         layout_scan_from_file_container.setOnClickListener {
             navigateToScanFromFileScreen()
         }
-    }
+    }*/
 
+    /*
     private fun handleZoomChanged() {
         seek_bar_zoom.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) { }
@@ -187,8 +189,9 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
                 }
             }
         })
-    }
+    }*/
 
+    /*
     private fun handleDecreaseZoomClicked() {
         button_decrease_zoom.setOnClickListener {
             decreaseZoom()
@@ -221,7 +224,7 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
             }
             seek_bar_zoom.progress = zoom
         }
-    }
+    }*/
 
     private fun handleScannedBarcode(result: Result) {
         if (requireActivity().intent?.action == ZXING_SCAN_INTENT_ACTION) {
@@ -304,10 +307,10 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
         }
     }
 
-    private fun toggleFlash() {
+    /*private fun toggleFlash() {
         image_view_flash.isActivated = image_view_flash.isActivated.not()
         codeScanner.isFlashEnabled = codeScanner.isFlashEnabled.not()
-    }
+    }*/
 
     private fun showToast(stringId: Int) {
         toast?.cancel()

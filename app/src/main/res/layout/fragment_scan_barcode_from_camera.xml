@@ -24,6 +24,9 @@
         app:maskColor="@color/black_transparent3"
         />
 
+    <!--
+
+
     <ImageView
         android:id="@+id/image_view_flash"
         android:layout_width="wrap_content"
@@ -119,5 +122,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_plus"
         />
-
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

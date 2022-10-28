@@ -72,7 +72,7 @@ class BottomTabsActivity : BaseActivity(), BottomNavigationView.OnNavigationItem
             R.id.item_scan -> ScanBarcodeFromCameraFragment()
             R.id.item_create_barcode -> CreateBarcodeFragment()
             R.id.item_history -> BarcodeHistoryFragment()
-            R.id.item_settings -> SettingsFragment()
+            // R.id.item_settings -> SettingsFragment()
             else -> null
         }
         fragment?.apply(::replaceFragment)

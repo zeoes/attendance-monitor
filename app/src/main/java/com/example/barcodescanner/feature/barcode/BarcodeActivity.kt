@@ -91,8 +91,8 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         handleButtonsClicked()
 
         showBarcode()
-        showOrHideButtons()
-        showButtonText()
+        //showOrHideButtons()
+        //showButtonText()
     }
 
     override fun onDeleteConfirmed() {
@@ -145,7 +145,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             BarcodeSchema.URL -> openLink()
             BarcodeSchema.VEVENT -> addToCalendar()
             BarcodeSchema.VCARD -> addToContacts()
-            BarcodeSchema.WIFI -> connectToWifi()
+            //BarcodeSchema.WIFI -> connectToWifi()
             BarcodeSchema.YOUTUBE -> openInYoutube()
             BarcodeSchema.NZCOVIDTRACER -> openLink()
             BarcodeSchema.BOARDINGPASS -> return
@@ -185,6 +185,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
     private fun handleButtonsClicked() {
         button_edit_name.setOnClickListener { showEditBarcodeNameDialog() }
 
+        /*
         button_search_on_web.setOnClickListener { searchBarcodeTextOnInternet() }
         button_add_to_calendar.setOnClickListener { addToCalendar() }
         button_add_to_contacts.setOnClickListener { addToContacts() }
@@ -221,6 +222,8 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         button_share_as_image.setOnClickListener { shareBarcodeAsImage() }
         button_save_as_image.setOnClickListener { navigateToSaveBarcodeAsImageActivity() }
         button_print.setOnClickListener { printBarcode() }
+        */
+
     }
 
 
@@ -371,7 +374,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         startActivityIfExists(Intent.ACTION_VIEW, barcode.geoUri.orEmpty())
     }
 
-    private fun connectToWifi() {
+    /*private fun connectToWifi() {
         showConnectToWifiButtonEnabled(false)
 
         wifiConnector
@@ -398,7 +401,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
                 }
             )
             .addTo(disposable)
-    }
+    }*/
 
     private fun openWifiSettings() {
         val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
@@ -550,11 +553,11 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
     private fun showBarcodeMenuIfNeeded() {
         toolbar.inflateMenu(R.menu.menu_barcode)
         toolbar.menu.apply {
-            findItem(R.id.item_increase_brightness).isVisible = isCreated
-            findItem(R.id.item_add_to_favorites)?.isVisible = barcode.isInDb
-            findItem(R.id.item_show_barcode_image)?.isVisible = isCreated.not()
-            findItem(R.id.item_save)?.isVisible = barcode.isInDb.not()
-            findItem(R.id.item_delete)?.isVisible = barcode.isInDb
+            findItem(R.id.item_increase_brightness).isVisible = false //isCreated
+            findItem(R.id.item_add_to_favorites)?.isVisible = false //barcode.isInDb
+            findItem(R.id.item_show_barcode_image)?.isVisible = false //isCreated.not()
+            findItem(R.id.item_save)?.isVisible = false //barcode.isInDb.not()
+            findItem(R.id.item_delete)?.isVisible = true
         }
     }
 
@@ -655,7 +658,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         }
     }
 
-    private fun showOrHideButtons() {
+    /*private fun showOrHideButtons() {
         button_search.isVisible = isCreated.not()
         button_edit_name.isVisible = barcode.isInDb
 
@@ -694,8 +697,9 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         button_open_bitcoin_uri.isVisible = barcode.bitcoinUri.isNullOrEmpty().not()
         button_open_link.isVisible = barcode.url.isNullOrEmpty().not()
         button_save_bookmark.isVisible = barcode.schema == BarcodeSchema.BOOKMARK
-    }
+    }*/
 
+    /*
     private fun showButtonText() {
         button_call_phone_1.text = getString(R.string.activity_barcode_call_phone, barcode.phone)
         button_call_phone_2.text = getString(R.string.activity_barcode_call_phone, barcode.secondaryPhone)
@@ -712,7 +716,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
 
     private fun showConnectToWifiButtonEnabled(isEnabled: Boolean) {
         button_connect_to_wifi.isEnabled = isEnabled
-    }
+    }*/
 
     private fun showDeleteBarcodeConfirmationDialog() {
         val dialog = DeleteConfirmationDialogFragment.newInstance(R.string.dialog_delete_barcode_message)

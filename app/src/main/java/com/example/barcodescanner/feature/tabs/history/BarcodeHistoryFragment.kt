@@ -54,7 +54,7 @@ class BarcodeHistoryFragment : Fragment(), DeleteConfirmationDialogFragment.List
         toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.item_export_history -> navigateToExportHistoryScreen()
-                R.id.item_clear_history -> showDeleteHistoryConfirmationDialog()
+                //R.id.item_clear_history -> showDeleteHistoryConfirmationDialog()
             }
             return@setOnMenuItemClickListener true
         }
