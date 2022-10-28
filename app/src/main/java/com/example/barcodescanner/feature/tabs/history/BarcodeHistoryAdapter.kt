@@ -25,7 +25,7 @@ class BarcodeHistoryAdapter(private val listener: Listener) : PagedListAdapter<B
         fun onBarcodeClicked(barcode: Barcode)
     }
 
-    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH)
+    private val dateFormatter = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -43,9 +43,9 @@ class BarcodeHistoryAdapter(private val listener: Listener) : PagedListAdapter<B
 
         fun show(barcode: Barcode, isLastItem: Boolean) {
             showDate(barcode)
-            showFormat(barcode)
+            //showFormat(barcode)
             showText(barcode)
-            showImage(barcode)
+            //showImage(barcode)
             showImageBackgroundColor(barcode)
             showIsFavorite(barcode)
             showOrHideDelimiter(isLastItem)
@@ -56,19 +56,19 @@ class BarcodeHistoryAdapter(private val listener: Listener) : PagedListAdapter<B
             itemView.text_view_date.text = dateFormatter.format(barcode.date)
         }
 
-        private fun showFormat(barcode: Barcode) {
+        /*private fun showFormat(barcode: Barcode) {
             itemView.text_view_format.setText(barcode.format.toStringId())
-        }
+        }*/
 
         private fun showText(barcode: Barcode) {
             itemView.text_view_text.text = barcode.name ?: barcode.formattedText
         }
 
-        private fun showImage(barcode: Barcode) {
+        /*private fun showImage(barcode: Barcode) {
             val imageId = barcode.schema.toImageId() ?: barcode.format.toImageId()
             val image = AppCompatResources.getDrawable(itemView.context, imageId)
             itemView.image_view_schema.setImageDrawable(image)
-        }
+        }*/
 
         private fun showImageBackgroundColor(barcode: Barcode) {
             val colorId = barcode.format.toColorId()

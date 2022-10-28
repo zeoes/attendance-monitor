@@ -75,6 +75,11 @@
         <item name="android:textColor">@color/default_text_color</item>
     </style>
 
+    <style name="ExtraLargeTextViewStyle">
+        <item name="android:textSize">@dimen/default_text_size_very_large</item>
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
+
     <style name="SecondaryTextViewStyle">
         <item name="android:textColor">@color/secondary_text_color</item>
         <item name="android:textSize">@dimen/default_text_size_very_small</item>
@@ -148,6 +153,15 @@
     <style name="DialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:colorBackground">@color/dialog_background_color</item>
         <item name="colorAccent">@color/color_accent</item>
+    </style>
+
+    <!-- Style for header text in the order form -->
+    <style name="HeaderTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
 </resources>

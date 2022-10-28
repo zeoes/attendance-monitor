@@ -29,7 +29,7 @@ class BarcodeImageActivity : BaseActivity() {
         }
     }
 
-    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH)
+    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH)
     private val barcode by unsafeLazy {
         intent?.getSerializableExtra(BARCODE_KEY) as? Barcode ?: throw IllegalArgumentException("No barcode passed")
     }

@@ -47,7 +47,7 @@ data class VEvent(
         }
 
         private val FORMATTED_TEXT_DATE_FORMATTER by unsafeLazy {
-            SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH)
+            SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH)
         }
 
         fun parse(text: String): VEvent? {

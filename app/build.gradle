@@ -36,6 +36,7 @@ android {
 
         //archivesBaseName "attendance-monitor-v0.1"
         archivesBaseName = "attendance-monitor-v0.1-"
+
     }
 
     compileOptions {

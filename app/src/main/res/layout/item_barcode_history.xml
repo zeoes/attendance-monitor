@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@id/layout_image"
         android:layout_marginTop="@dimen/default_margin_medium"
         android:layout_marginStart="@dimen/default_margin"
-        tools:text="01.09.1993 12:00"
+        tools:text="01.09.1993 12:00:00"
         style="@style/SecondaryTextViewStyle"
         />
     <TextView

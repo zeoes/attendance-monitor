@@ -56,7 +56,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
     }
 
     private val disposable = CompositeDisposable()
-    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH)
+    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH)
 
     private val originalBarcode by unsafeLazy {
         intent?.getSerializableExtra(BARCODE_KEY) as? Barcode ?: throw IllegalArgumentException("No barcode passed")
@@ -183,9 +183,8 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
     }
 
     private fun handleButtonsClicked() {
-        button_edit_name.setOnClickListener { showEditBarcodeNameDialog() }
-
         /*
+        button_edit_name.setOnClickListener { showEditBarcodeNameDialog() }
         button_search_on_web.setOnClickListener { searchBarcodeTextOnInternet() }
         button_add_to_calendar.setOnClickListener { addToCalendar() }
         button_add_to_contacts.setOnClickListener { addToContacts() }
@@ -259,7 +258,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             .subscribe(
                 {
                     barcode.name = name
-                    showBarcodeName(name)
+                    //showBarcodeName(name)
                 },
                 ::showError
             )
@@ -275,7 +274,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             .subscribe(
                 { id ->
                     barcode.id = id
-                    button_edit_name.isVisible = true
+                    //button_edit_name.isVisible = true
                     toolbar?.menu?.findItem(R.id.item_delete)?.isVisible = true
                 },
                 { error ->
@@ -541,13 +540,13 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
 
     private fun showBarcode() {
         showBarcodeMenuIfNeeded()
-        showBarcodeIsFavorite()
-        showBarcodeImageIfNeeded()
+        //showBarcodeIsFavorite()
+        //showBarcodeImageIfNeeded()
         showBarcodeDate()
         showBarcodeFormat()
-        showBarcodeName()
+        //showBarcodeName()
         showBarcodeText()
-        showBarcodeCountry()
+        //showBarcodeCountry()
     }
 
     private fun showBarcodeMenuIfNeeded() {
@@ -604,17 +603,19 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
 
     private fun showBarcodeFormat() {
         val format = barcode.format.toStringId()
-        toolbar.setTitle(format)
+        // INFO - Setting Title Here
+        //toolbar.setTitle(format)
+        toolbar.setTitle("Entry Token")
     }
 
-    private fun showBarcodeName() {
+    /*private fun showBarcodeName() {
         showBarcodeName(barcode.name)
-    }
+    }*/
 
-    private fun showBarcodeName(name: String?) {
+    /*private fun showBarcodeName(name: String?) {
         text_view_barcode_name.isVisible = name.isNullOrBlank().not()
         text_view_barcode_name.text = name.orEmpty()
-    }
+    }*/
 
     private fun showBarcodeText() {
         text_view_barcode_text.text = if (isCreated) {
@@ -624,7 +625,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         }
     }
 
-    private fun showBarcodeCountry() {
+    /*private fun showBarcodeCountry() {
         val country = barcode.country ?: return
         when (country.contains('/')) {
             false -> showOneBarcodeCountry(country)
@@ -656,7 +657,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             text = fullCountryName
             isVisible = fullCountryName.isBlank().not()
         }
-    }
+    }*/
 
     /*private fun showOrHideButtons() {
         button_search.isVisible = isCreated.not()

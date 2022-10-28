@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DateTimePickerButton : FrameLayout {
-    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH)
+    private val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.ENGLISH)
     private val view: View
 
     constructor(context: Context) : this(context, null)
