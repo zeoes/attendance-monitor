@@ -97,6 +97,16 @@
                 style="@style/HeaderTextStyle"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:text="Token" />
+            <TextView
+                android:id="@+id/text_view_token_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:lineSpacingMultiplier="1.2"
+                tools:text="Content"
+                style="@style/ExtraLargeTextViewStyle"
+                />
             <!--
             <TextView
                 android:id="@+id/text_view_country"

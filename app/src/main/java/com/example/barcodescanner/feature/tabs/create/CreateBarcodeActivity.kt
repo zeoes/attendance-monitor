@@ -301,6 +301,7 @@ class CreateBarcodeActivity : BaseActivity(), AppAdapter.Listener {
     }
 
     private fun createBarcode(schema: Schema, finish: Boolean = false) {
+        // TODO - Need to create token
         val barcode = Barcode(
             text = schema.toBarcodeText(),
             formattedText = schema.toFormattedText(),

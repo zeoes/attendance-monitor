@@ -70,7 +70,7 @@ interface BarcodeDatabase {
     @Query("SELECT * FROM codes WHERE isFavorite = 1 ORDER BY date DESC")
     fun getFavorites(): DataSource.Factory<Int, Barcode>
 
-    @Query("SELECT date, format, text FROM codes ORDER BY date DESC")
+    @Query("SELECT date, format, text,id FROM codes ORDER BY date DESC")
     fun getAllForExport(): Single<List<ExportBarcode>>
 
     @Query("SELECT * FROM codes WHERE format = :format AND text = :text LIMIT 1")

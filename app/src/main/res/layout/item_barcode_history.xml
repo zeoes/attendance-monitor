@@ -51,7 +51,23 @@
         tools:text="Hello World!"
         android:includeFontPadding="false"
         android:ellipsize="end"
+        android:textColor="@color/blue"
         style="@style/DefaultTextViewStyle"
+        />
+    <TextView
+        android:id="@+id/text_view_token_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_very_small"
+        android:layout_marginEnd="@dimen/default_margin_small"
+        app:layout_constraintTop_toBottomOf="@id/text_view_text"
+        app:layout_constraintStart_toStartOf="@id/text_view_text"
+        app:layout_constraintEnd_toStartOf="@id/image_view_favorite"
+        android:maxLines="1"
+        android:includeFontPadding="false"
+        android:ellipsize="end"
+        style="@style/DefaultTextViewStyle"
+        android:text="Token"
         />
     <TextView
         android:id="@+id/text_view_format"
@@ -63,6 +79,7 @@
         tools:text="Data matrix"
         style="@style/SecondaryTextViewStyle"
         />
+
     <ImageView
         android:id="@+id/image_view_favorite"
         android:layout_width="wrap_content"

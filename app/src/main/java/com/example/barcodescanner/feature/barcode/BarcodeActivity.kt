@@ -547,6 +547,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         //showBarcodeName()
         showBarcodeText()
         //showBarcodeCountry()
+        showBarcodeToken()
     }
 
     private fun showBarcodeMenuIfNeeded() {
@@ -623,6 +624,10 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
         } else {
             barcode.formattedText
         }
+    }
+
+    private fun showBarcodeToken() {
+        text_view_token_text.text = barcode.id.toString()
     }
 
     /*private fun showBarcodeCountry() {

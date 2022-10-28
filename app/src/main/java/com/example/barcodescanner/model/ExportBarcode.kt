@@ -6,6 +6,7 @@ import com.google.zxing.BarcodeFormat
 
 @TypeConverters(BarcodeDatabaseTypeConverter::class)
 data class ExportBarcode(
+    val id: Long,
     val date: Long,
     val format: BarcodeFormat,
     val text: String

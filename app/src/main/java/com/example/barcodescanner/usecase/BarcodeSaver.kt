@@ -118,10 +118,10 @@ object BarcodeSaver {
 
     private fun trySaveBarcodeHistoryCsv(context: Context, fileName: String, barcodes: List<ExportBarcode>) {
         val result = StringBuilder()
-            .append("Date,Format,Text\n")
+            .append("Date,Text,Token\n")
 
         barcodes.forEach { barcode ->
-            result.append("${dateFormatter.formatOrNull(barcode.date)},${barcode.format},${barcode.text}\n")
+            result.append("${dateFormatter.formatOrNull(barcode.date)},${barcode.text},${barcode.id}\n")
         }
 
         val newFileName = if (fileName.endsWithIgnoreCase(CSV_FILE_EXTENSION)) {

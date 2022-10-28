@@ -18,6 +18,7 @@ data class Barcode(
     val format: BarcodeFormat,
     val schema: BarcodeSchema,
     val date: Long,
+    //val token: Long,
     val isGenerated: Boolean = false,
     val isFavorite: Boolean = false,
     val errorCorrectionLevel: String? = null,
