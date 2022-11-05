@@ -228,7 +228,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
 
     private fun toggleIsFavorite() {
         val newBarcode = originalBarcode.copy(isFavorite = barcode.isFavorite.not())
-
+        newBarcode.token = barcodeDatabase.getTodayTokenCount();
         barcodeDatabase.save(newBarcode)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -251,6 +251,8 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             id = barcode.id,
             name = name
         )
+
+        newBarcode.token = barcodeDatabase.getTodayTokenCount()
 
         barcodeDatabase.save(newBarcode)
             .subscribeOn(Schedulers.io())
@@ -603,7 +605,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
     }
 
     private fun showBarcodeFormat() {
-        val format = barcode.format.toStringId()
+        // val format = barcode.format.toStringId()
         // INFO - Setting Title Here
         //toolbar.setTitle(format)
         toolbar.setTitle("Entry Token")
@@ -627,7 +629,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
     }
 
     private fun showBarcodeToken() {
-        text_view_token_text.text = barcode.id.toString()
+        text_view_token_text.text = barcode.token.toString()
     }
 
     /*private fun showBarcodeCountry() {

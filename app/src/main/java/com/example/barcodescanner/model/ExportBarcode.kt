@@ -9,5 +9,6 @@ data class ExportBarcode(
     val id: Long,
     val date: Long,
     val format: BarcodeFormat,
+    val token: Int,
     val text: String
 )

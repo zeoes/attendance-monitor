@@ -308,6 +308,7 @@ class CreateBarcodeActivity : BaseActivity(), AppAdapter.Listener {
             format = barcodeFormat,
             schema = schema.schema,
             date = System.currentTimeMillis(),
+            token = barcodeDatabase.getTodayTokenCount(),
             isGenerated = true
         )
 

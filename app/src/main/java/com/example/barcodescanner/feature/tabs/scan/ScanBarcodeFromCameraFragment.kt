@@ -239,9 +239,8 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
         }
 
         vibrateIfNeeded()
-
-        val barcode = barcodeParser.parseResult(result)
-
+        val token = barcodeDatabase.getTodayTokenCount() + 1
+        val barcode = barcodeParser.parseResult(result,token)
         when {
             settings.confirmScansManually -> showScanConfirmationDialog(barcode)
             settings.saveScannedBarcodesToHistory || settings.continuousScanning -> saveScannedBarcode(barcode)

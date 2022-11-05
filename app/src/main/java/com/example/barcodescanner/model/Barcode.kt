@@ -1,5 +1,6 @@
 package com.example.barcodescanner.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -18,7 +19,8 @@ data class Barcode(
     val format: BarcodeFormat,
     val schema: BarcodeSchema,
     val date: Long,
-    //val token: Long,
+    @ColumnInfo(name = "token")
+    var token: Int,
     val isGenerated: Boolean = false,
     val isFavorite: Boolean = false,
     val errorCorrectionLevel: String? = null,

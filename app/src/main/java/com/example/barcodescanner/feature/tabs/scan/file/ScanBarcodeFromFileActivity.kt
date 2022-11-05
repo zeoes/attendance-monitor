@@ -218,7 +218,9 @@ class ScanBarcodeFromFileActivity : BaseActivity() {
     }
 
     private fun saveScanResult() {
-        val barcode = lastScanResult?.let(barcodeParser::parseResult) ?: return
+        //val barcode = lastScanResult?.let(barcodeParser::parseResult) ?: return
+        val token = barcodeDatabase.getTodayTokenCount()
+        val barcode = lastScanResult?.let { barcodeParser.parseResult(it,token) } ?: return
         if (settings.saveScannedBarcodesToHistory.not()) {
             navigateToBarcodeScreen(barcode)
             return
