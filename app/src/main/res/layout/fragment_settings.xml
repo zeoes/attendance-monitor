@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -21,11 +22,63 @@
         android:id="@+id/scroll_view"
         style="@style/ScrollStyle"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+
+            <TextView
+                android:id="@+id/text_view_token_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                android:text="Next Token starts from the below series"
+
+                style="@style/DefaultTextViewStyle"
+                />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                style="@style/TextInputLayoutStyle"
+                >
+
+                <EditText
+                    android:id="@+id/edit_text_token"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/blue"
+                    android:gravity="start|center"
+                    android:hint="Edit Token Number"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:maxLines="1"
+                    tools:ignore="SpeakableTextPresentCheck">
+
+                    <requestFocus />
+                </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/button_save_token"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_very_big"
+                android:layout_marginHorizontal="@dimen/default_margin_big"
+                android:text="Save Token"
+                style="@style/ButtonStyle"
+                />
+
+            <View
+                android:id="@+id/delimiter_token_appearance"
+                android:layout_marginTop="@dimen/default_margin_very_big"
+                style="@style/DelimiterStyle"
+                />
 
             <!--Appearance-->
             <TextView
@@ -36,6 +89,7 @@
                 android:layout_marginBottom="@dimen/default_margin_small"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:text="@string/fragment_settings_appearance_settings"
+                android:visibility="gone"
                 style="@style/SettingsGroupTitleTextViewStyle"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
@@ -44,17 +98,20 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_theme"
                 app:isSwitchVisible="false"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_inverse_barcode_colors_in_dark_theme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:text="@string/fragment_settings_inverse_barcode_colors_in_dark_theme"
                 app:hint="@string/fragment_settings_inverse_barcode_colors_in_dark_theme_hint"
                 />
             <View
                 android:id="@+id/delimiter_appearance"
                 style="@style/DelimiterStyle"
+                android:visibility="gone"
                 />
 
             <!--Scanner-->
@@ -66,6 +123,7 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:text="@string/fragment_settings_scanner_settings"
                 style="@style/SettingsGroupTitleTextViewStyle"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_open_links_automatically"
@@ -73,6 +131,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_open_content_automatically"
                 app:hint="@string/fragment_settings_open_content_automatically_hint"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_copy_to_clipboard"
@@ -80,6 +139,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_copy_to_clipboard"
                 app:hint="@string/fragment_settings_copy_to_clipboard_hint"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_simple_auto_focus"
@@ -87,12 +147,14 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_simple_auto_focus"
                 app:hint="@string/fragment_settings_simple_auto_focus_hint"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_flashlight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_flash"
+                android:visibility="gone"
                 app:hint="@string/fragment_settings_flash_hint"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
@@ -101,6 +163,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_vibrate"
                 app:hint="@string/fragment_settings_vibrate_hint"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_continuous_scanning"
@@ -108,6 +171,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_continuous_scanning"
                 app:hint="@string/fragment_settings_continuous_scanning_hint"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_confirm_scans_manually"
@@ -115,6 +179,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_confirm_scans_manually"
                 app:hint="@string/fragment_settings_confirm_scans_manually_hint"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_choose_camera"
@@ -122,6 +187,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_camera"
                 app:isSwitchVisible="false"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_select_supported_formats"
@@ -129,8 +195,9 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_supported_formats"
                 app:isSwitchVisible="false"
+                android:visibility="gone"
                 />
-            <View style="@style/DelimiterStyle" />
+            <View style="@style/DelimiterStyle" android:visibility="gone"/>
 
             <!--History-->
             <TextView
@@ -141,24 +208,28 @@
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:text="@string/fragment_settings_history_settings"
                 style="@style/SettingsGroupTitleTextViewStyle"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_save_scanned_barcodes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_save_scanned_barcodes_to_history"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_save_created_barcodes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_save_created_barcodes_to_history"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_do_not_save_duplicates"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_do_not_save_duplicates"
+                android:visibility="gone"
                 app:hint="@string/fragment_settings_do_not_save_duplicates_hint"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
@@ -167,9 +238,10 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_clear_history"
                 app:isDelimiterVisible="false"
+                android:visibility="gone"
                 app:isSwitchVisible="false"
                 />
-            <View style="@style/DelimiterStyle" />
+            <View style="@style/DelimiterStyle" android:visibility="gone"/>
 
             <!--Advanced-->
             <TextView
@@ -178,6 +250,7 @@
                 android:layout_marginTop="@dimen/default_margin_very_big"
                 android:layout_marginBottom="@dimen/default_margin_small"
                 android:layout_marginHorizontal="@dimen/default_margin"
+                android:visibility="gone"
                 android:text="@string/fragment_settings_advanced_settings"
                 style="@style/SettingsGroupTitleTextViewStyle"
                 />
@@ -187,9 +260,10 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_choose_search_engines"
                 app:hint="@string/fragment_settings_choose_search_engines_hint"
+                android:visibility="gone"
                 app:isSwitchVisible="false"
                 />
-            <View style="@style/DelimiterStyle" />
+            <View style="@style/DelimiterStyle" android:visibility="gone"/>
 
             <!--Error reports-->
             <TextView
@@ -197,6 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin_very_big"
                 android:layout_marginBottom="@dimen/default_margin_small"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 android:text="@string/fragment_settings_error_reports"
                 style="@style/SettingsGroupTitleTextViewStyle"
@@ -207,8 +282,9 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_enable_error_reports"
                 app:hint="@string/fragment_settings_enable_error_reports_hint"
+                android:visibility="gone"
                 />
-            <View style="@style/DelimiterStyle" />
+            <View style="@style/DelimiterStyle" android:visibility="gone"/>
 
             <!--About-->
             <TextView
@@ -217,6 +293,7 @@
                 android:layout_marginTop="@dimen/default_margin_very_big"
                 android:layout_marginBottom="@dimen/default_margin_small"
                 android:layout_marginHorizontal="@dimen/default_margin"
+                android:visibility="gone"
                 android:text="@string/fragment_settings_about"
                 style="@style/SettingsGroupTitleTextViewStyle"
                 />
@@ -225,6 +302,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_check_updates"
+                android:visibility="gone"
                 app:isSwitchVisible="false"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
@@ -232,6 +310,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_permissions"
+                android:visibility="gone"
                 app:isSwitchVisible="false"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
@@ -240,6 +319,7 @@
                 android:layout_height="wrap_content"
                 app:text="@string/fragment_settings_source_code"
                 app:isSwitchVisible="false"
+                android:visibility="gone"
                 />
             <com.example.barcodescanner.feature.common.view.SettingsButton
                 android:id="@+id/button_app_version"
@@ -248,6 +328,7 @@
                 app:text="@string/fragment_settings_app_version"
                 app:isDelimiterVisible="false"
                 app:isSwitchVisible="false"
+                android:visibility="gone"
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

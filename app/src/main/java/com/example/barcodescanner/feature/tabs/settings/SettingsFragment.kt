@@ -14,6 +14,7 @@ import com.example.barcodescanner.di.settings
 import com.example.barcodescanner.extension.applySystemWindowInsets
 import com.example.barcodescanner.extension.packageManager
 import com.example.barcodescanner.extension.showError
+import com.example.barcodescanner.extension.textString
 import com.example.barcodescanner.feature.common.dialog.DeleteConfirmationDialogFragment
 import com.example.barcodescanner.feature.tabs.settings.camera.ChooseCameraActivity
 import com.example.barcodescanner.feature.tabs.settings.formats.SupportedFormatsActivity
@@ -24,6 +25,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_export_history.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 
@@ -45,6 +47,7 @@ class SettingsFragment : Fragment(), DeleteConfirmationDialogFragment.Listener {
         handleButtonClicks()
         showSettings()
         showAppVersion()
+        initSaveTokenButton()
     }
 
     override fun onDeleteConfirmed() {
@@ -58,6 +61,15 @@ class SettingsFragment : Fragment(), DeleteConfirmationDialogFragment.Listener {
 
     fun supportEdgeToEdge() {
         app_bar_layout.applySystemWindowInsets(applyTop = true)
+    }
+
+    private fun initSaveTokenButton() {
+        button_save_token.setOnClickListener {
+            val tokenNumber = edit_text_token.textString
+            System.out.println("-------------------------------")
+            System.out.println(tokenNumber)
+            System.out.println("-------------------------------")
+        }
     }
 
     private fun handleButtonCheckedChanged() {
