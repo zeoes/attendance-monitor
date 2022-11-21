@@ -30,6 +30,7 @@ import com.example.barcodescanner.model.SearchEngine
 import com.example.barcodescanner.model.schema.BarcodeSchema
 import com.example.barcodescanner.model.schema.OtpAuth
 import com.example.barcodescanner.usecase.Logger
+import com.example.barcodescanner.usecase.getToken
 import com.example.barcodescanner.usecase.save
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -228,7 +229,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
 
     private fun toggleIsFavorite() {
         val newBarcode = originalBarcode.copy(isFavorite = barcode.isFavorite.not())
-        newBarcode.token = barcodeDatabase.getTodayTokenCount();
+        newBarcode.token = barcodeDatabase.getToken()
         barcodeDatabase.save(newBarcode)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -252,7 +253,7 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             name = name
         )
 
-        newBarcode.token = barcodeDatabase.getTodayTokenCount()
+        newBarcode.token = barcodeDatabase.getToken()
 
         barcodeDatabase.save(newBarcode)
             .subscribeOn(Schedulers.io())

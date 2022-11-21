@@ -180,10 +180,12 @@
     <!--Barcode history fragment-->
     <string name="fragment_barcode_history_title">Today Report</string>
     <string-array name="fragment_barcode_history_tab_titles">
-        <item>All</item>
+        <item>Today Report</item>
+        <item>All Report</item>
         <!-- <item>Favorites</item> -->
     </string-array>
     <string name="fragment_barcode_history_menu_title_export">Export Today Report</string>
+    <string name="fragment_barcode_history_menu_title_export_backup">Export All Report</string>
     <string name="fragment_barcode_history_menu_title_delete_all">Clear Today Report</string>
 
     <!--Export history activity-->

@@ -24,6 +24,7 @@ import com.example.barcodescanner.model.schema.App
 import com.example.barcodescanner.model.schema.BarcodeSchema
 import com.example.barcodescanner.model.schema.Schema
 import com.example.barcodescanner.usecase.Logger
+import com.example.barcodescanner.usecase.getToken
 import com.example.barcodescanner.usecase.save
 import com.google.zxing.BarcodeFormat
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -308,7 +309,7 @@ class CreateBarcodeActivity : BaseActivity(), AppAdapter.Listener {
             format = barcodeFormat,
             schema = schema.schema,
             date = System.currentTimeMillis(),
-            token = barcodeDatabase.getTodayTokenCount(),
+            token = barcodeDatabase.getToken(),
             isGenerated = true
         )
 

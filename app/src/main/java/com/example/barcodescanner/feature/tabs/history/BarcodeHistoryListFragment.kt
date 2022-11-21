@@ -24,14 +24,23 @@ class BarcodeHistoryListFragment : Fragment(), BarcodeHistoryAdapter.Listener {
 
     companion object {
         private const val PAGE_SIZE = 20
-        private const val TYPE_ALL = 0
+        private const val TYPE_ALL_REPORT = 0
+        private const val TYPE_TODAY_REPORT = 0
         private const val TYPE_FAVORITES = 1
         private const val TYPE_KEY = "TYPE_KEY"
 
-        fun newInstanceAll(): BarcodeHistoryListFragment {
+        fun newInstanceTodayReport(): BarcodeHistoryListFragment {
             return BarcodeHistoryListFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(TYPE_KEY, TYPE_ALL)
+                    putInt(TYPE_KEY, TYPE_TODAY_REPORT)
+                }
+            }
+        }
+
+        fun newInstanceAllReport(): BarcodeHistoryListFragment {
+            return BarcodeHistoryListFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(TYPE_KEY, TYPE_ALL_REPORT)
                 }
             }
         }
@@ -81,7 +90,8 @@ class BarcodeHistoryListFragment : Fragment(), BarcodeHistoryAdapter.Listener {
             .build()
 
         val dataSource = when (arguments?.getInt(TYPE_KEY).orZero()) {
-            TYPE_ALL -> barcodeDatabase.getAll()
+            TYPE_ALL_REPORT -> barcodeDatabase.getAll()
+            TYPE_TODAY_REPORT -> barcodeDatabase.getTodayReport()
             TYPE_FAVORITES -> barcodeDatabase.getFavorites()
             else -> return
         }

@@ -18,6 +18,7 @@ import com.example.barcodescanner.extension.showError
 import com.example.barcodescanner.feature.BaseActivity
 import com.example.barcodescanner.feature.barcode.BarcodeActivity
 import com.example.barcodescanner.model.Barcode
+import com.example.barcodescanner.usecase.getToken
 import com.example.barcodescanner.usecase.save
 import com.google.zxing.Result
 import com.isseiaoki.simplecropview.CropImageView
@@ -219,7 +220,7 @@ class ScanBarcodeFromFileActivity : BaseActivity() {
 
     private fun saveScanResult() {
         //val barcode = lastScanResult?.let(barcodeParser::parseResult) ?: return
-        val token = barcodeDatabase.getTodayTokenCount()
+        val token = barcodeDatabase.getToken()
         val barcode = lastScanResult?.let { barcodeParser.parseResult(it,token) } ?: return
         if (settings.saveScannedBarcodesToHistory.not()) {
             navigateToBarcodeScreen(barcode)

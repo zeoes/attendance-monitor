@@ -19,8 +19,8 @@ class BarcodeHistoryViewPagerAdapter(context: Context, fragmentManager: Fragment
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> BarcodeHistoryListFragment.newInstanceAll()
-            //1 -> BarcodeHistoryListFragment.newInstanceFavorites()
+            0 -> BarcodeHistoryListFragment.newInstanceTodayReport()
+            1 -> BarcodeHistoryListFragment.newInstanceAllReport()
             else -> throw IllegalArgumentException("No fragment for position greater than 1")
         }
     }

@@ -21,6 +21,7 @@ import com.example.barcodescanner.feature.common.dialog.ConfirmBarcodeDialogFrag
 import com.example.barcodescanner.feature.tabs.scan.file.ScanBarcodeFromFileActivity
 import com.example.barcodescanner.model.Barcode
 import com.example.barcodescanner.usecase.SupportedBarcodeFormats
+import com.example.barcodescanner.usecase.getToken
 import com.example.barcodescanner.usecase.save
 import com.google.zxing.Result
 import com.google.zxing.ResultMetadataType
@@ -239,7 +240,7 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
         }
 
         vibrateIfNeeded()
-        val token = barcodeDatabase.getTodayTokenCount() + 1
+        val token = barcodeDatabase.getToken()
         val barcode = barcodeParser.parseResult(result,token)
         when {
             settings.confirmScansManually -> showScanConfirmationDialog(barcode)

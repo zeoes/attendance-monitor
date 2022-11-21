@@ -47,6 +47,7 @@ class ExportHistoryActivity : BaseActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
         if (permissionsHelper.areAllPermissionsGranted(grantResults)) {
             exportHistory()
         }

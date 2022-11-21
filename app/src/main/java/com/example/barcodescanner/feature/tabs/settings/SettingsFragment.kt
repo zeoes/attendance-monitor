@@ -21,6 +21,9 @@ import com.example.barcodescanner.feature.tabs.settings.formats.SupportedFormats
 import com.example.barcodescanner.feature.tabs.settings.permissions.AllPermissionsActivity
 import com.example.barcodescanner.feature.tabs.settings.search.ChooseSearchEngineActivity
 import com.example.barcodescanner.feature.tabs.settings.theme.ChooseThemeActivity
+import com.example.barcodescanner.usecase.getToken
+import com.example.barcodescanner.usecase.getTokenForDisplay
+import com.example.barcodescanner.usecase.updateToken
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -64,10 +67,18 @@ class SettingsFragment : Fragment(), DeleteConfirmationDialogFragment.Listener {
     }
 
     private fun initSaveTokenButton() {
+        edit_text_token.setText(barcodeDatabase.getTokenForDisplay().toString())
+        edit_text_token.setSelection(edit_text_token.length())//placing cursor at the end of the text
+        //edit_text_token.textString = barcodeDatabase.getTokenForDisplay().toString();
+        System.out.println("------------PAGE LOAD-------------------")
+        System.out.println(barcodeDatabase.getTokenForDisplay().toString())
+        System.out.println(edit_text_token.text)
+        System.out.println("----------------------------------------")
         button_save_token.setOnClickListener {
             val tokenNumber = edit_text_token.textString
             System.out.println("-------------------------------")
             System.out.println(tokenNumber)
+            barcodeDatabase.updateToken(tokenNumber.toInt());
             System.out.println("-------------------------------")
         }
     }
