@@ -12,28 +12,43 @@ import com.example.barcodescanner.R
 import com.example.barcodescanner.di.barcodeDatabase
 import com.example.barcodescanner.di.barcodeSaver
 import com.example.barcodescanner.di.permissionsHelper
-import com.example.barcodescanner.extension.applySystemWindowInsets
-import com.example.barcodescanner.extension.isNotBlank
-import com.example.barcodescanner.extension.showError
-import com.example.barcodescanner.extension.textString
+import com.example.barcodescanner.extension.*
 import com.example.barcodescanner.feature.BaseActivity
+import com.example.barcodescanner.feature.barcode.BarcodeActivity
+import com.example.barcodescanner.feature.barcode.save.SaveBarcodeAsImageActivity
+import com.example.barcodescanner.usecase.getTokenForDisplay
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_export_history.*
+import kotlinx.android.synthetic.main.activity_export_history.scroll_view
+import kotlinx.android.synthetic.main.activity_export_history.toolbar
+import kotlinx.android.synthetic.main.fragment_settings.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ExportHistoryActivity : BaseActivity() {
     private val disposable = CompositeDisposable()
+
+    private val dateFormatter = SimpleDateFormat("yyyy_MM_dd")
 
     companion object {
         private const val REQUEST_PERMISSIONS_CODE = 101
         private val PERMISSIONS = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-        fun start(context: Context) {
-            val intent = Intent(context, ExportHistoryActivity::class.java)
+        private const val IS_BACKUP = "IS_BACKUP"
+
+        fun start(context: Context, isBackup: Boolean = false) {
+            val intent = Intent(context, ExportHistoryActivity::class.java).apply {
+                putExtra(IS_BACKUP, isBackup)
+            }
             context.startActivity(intent)
         }
+    }
+
+    private val isBackup by unsafeLazy {
+        intent?.getBooleanExtra(IS_BACKUP, false).orFalse()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +92,14 @@ class ExportHistoryActivity : BaseActivity() {
     }
 
     private fun initFileNameEditText() {
+        var fileName = "ATTENDANCE_REPORT";
+        if (isBackup) {
+            fileName = fileName +  "_BACKUP_" + dateFormatter.format(Calendar. getInstance().time)
+        } else {
+            fileName = fileName + "_" + dateFormatter.format(Calendar. getInstance().time)
+        }
+        edit_text_file_name.setText(fileName)
+        edit_text_file_name.setSelection(edit_text_file_name.length())//placing cursor at the end of the text
         edit_text_file_name.addTextChangedListener {
             button_export.isEnabled = edit_text_file_name.isNotBlank()
         }
@@ -94,6 +117,7 @@ class ExportHistoryActivity : BaseActivity() {
 
     private fun exportHistory() {
         val fileName = edit_text_file_name.textString
+
         val saveFunc = when (spinner_export_as.selectedItemPosition) {
             0 -> barcodeSaver::saveBarcodeHistoryAsCsv
             1 -> barcodeSaver::saveBarcodeHistoryAsJson
@@ -102,23 +126,45 @@ class ExportHistoryActivity : BaseActivity() {
 
         showLoading(true)
 
-        barcodeDatabase
-            .getAllForExport()
-            .flatMapCompletable { barcodes ->
-                saveFunc(this, fileName, barcodes)
-            }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    showHistoryExported()
-                },
-                { error ->
-                    showLoading(false)
-                    showError(error)
+        if (isBackup) {
+            barcodeDatabase
+                .getAllForExport()
+                .flatMapCompletable { barcodes ->
+                    saveFunc(this, fileName, barcodes)
                 }
-            )
-            .addTo(disposable)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        showHistoryExported()
+                    },
+                    { error ->
+                        showLoading(false)
+                        showError(error)
+                    }
+                )
+                .addTo(disposable)
+        } else {
+            barcodeDatabase
+                .getTodayReportForExport()
+                .flatMapCompletable { barcodes ->
+                    saveFunc(this, fileName, barcodes)
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        showHistoryExported()
+                    },
+                    { error ->
+                        showLoading(false)
+                        showError(error)
+                    }
+                )
+                .addTo(disposable)
+        }
+
+
     }
 
     private fun showLoading(isLoading: Boolean) {

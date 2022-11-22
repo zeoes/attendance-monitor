@@ -80,6 +80,9 @@ interface BarcodeDatabase {
     @Query("SELECT date, format, text,id, token FROM codes ORDER BY date DESC")
     fun getAllForExport(): Single<List<ExportBarcode>>
 
+    @Query("SELECT date, format, text,id, token FROM codes where strftime('%Y%m%d', 'now') = strftime('%Y%m%d', datetime(SUBSTR(date, 1, 10),'unixepoch')) ORDER BY date desc, token desc")
+    fun getTodayReportForExport(): Single<List<ExportBarcode>>
+
     @Query("SELECT * FROM codes WHERE format = :format AND text = :text LIMIT 1")
     fun find(format: String, text: String): Single<List<Barcode>>
 

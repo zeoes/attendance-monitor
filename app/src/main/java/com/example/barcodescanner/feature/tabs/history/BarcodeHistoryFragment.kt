@@ -61,11 +61,11 @@ class BarcodeHistoryFragment : Fragment(), DeleteConfirmationDialogFragment.List
     }
 
     private fun navigateToExportTodayReportScreen() {
-        ExportHistoryActivity.start(requireActivity())
+        ExportHistoryActivity.start(requireActivity(),false)
     }
 
     private fun navigateToExportHistoryScreen() {
-        ExportHistoryActivity.start(requireActivity())
+        ExportHistoryActivity.start(requireActivity(),true)
     }
 
     private fun showDeleteHistoryConfirmationDialog() {
