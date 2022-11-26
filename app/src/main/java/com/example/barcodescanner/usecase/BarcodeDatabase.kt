@@ -71,7 +71,7 @@ interface BarcodeDatabase {
     @Query("SELECT * FROM codes ORDER BY date desc, token desc")
     fun getAll(): DataSource.Factory<Int, Barcode>
 
-    @Query("SELECT * FROM codes where strftime('%Y%m%d', 'now') = strftime('%Y%m%d', datetime(SUBSTR(date, 1, 10),'unixepoch')) ORDER BY date desc, token desc")
+    @Query("SELECT * FROM codes where STRFTIME('%Y-%m-%d',datetime ('now','localtime')) = STRFTIME('%Y-%m-%d',datetime (SUBSTR(date,1,10),'unixepoch', 'localtime')) ORDER BY date desc, token desc")
     fun getTodayReport(): DataSource.Factory<Int, Barcode>
 
     @Query("SELECT * FROM codes WHERE isFavorite = 1 ORDER BY date DESC")
@@ -80,7 +80,7 @@ interface BarcodeDatabase {
     @Query("SELECT date, format, text,id, token FROM codes ORDER BY date DESC")
     fun getAllForExport(): Single<List<ExportBarcode>>
 
-    @Query("SELECT date, format, text,id, token FROM codes where strftime('%Y%m%d', 'now') = strftime('%Y%m%d', datetime(SUBSTR(date, 1, 10),'unixepoch')) ORDER BY date desc, token desc")
+    @Query("SELECT date, format, text,id, token FROM codes where STRFTIME('%Y-%m-%d',datetime ('now','localtime')) = STRFTIME('%Y-%m-%d',datetime (SUBSTR(date,1,10),'unixepoch', 'localtime')) ORDER BY date desc, token desc")
     fun getTodayReportForExport(): Single<List<ExportBarcode>>
 
     @Query("SELECT * FROM codes WHERE format = :format AND text = :text LIMIT 1")
@@ -95,13 +95,11 @@ interface BarcodeDatabase {
     @Query("UPDATE params SET value=:value WHERE code =:code")
     fun updateParam(code: String,value:Int): Int
 
-    @Query("SELECT COUNT(*) FROM codes where strftime('%Y%m%d', 'now') = strftime('%Y%m%d', datetime(SUBSTR(date, 1, 10),'unixepoch'))")
+    @Query("SELECT COUNT(*) FROM codes where STRFTIME('%Y-%m-%d',datetime ('now','localtime')) = STRFTIME('%Y-%m-%d',datetime (SUBSTR(date,1,10),'unixepoch', 'localtime'))")
     fun getTodayTokenCount(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(barcode: Barcode): Single<Long>
-
-
 
     @Query("DELETE FROM codes WHERE id = :id")
     fun delete(id: Long): Completable

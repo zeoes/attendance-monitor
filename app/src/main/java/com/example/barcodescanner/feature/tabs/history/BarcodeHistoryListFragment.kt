@@ -24,9 +24,9 @@ class BarcodeHistoryListFragment : Fragment(), BarcodeHistoryAdapter.Listener {
 
     companion object {
         private const val PAGE_SIZE = 20
-        private const val TYPE_ALL_REPORT = 0
+        private const val TYPE_ALL_REPORT = 1
         private const val TYPE_TODAY_REPORT = 0
-        private const val TYPE_FAVORITES = 1
+        private const val TYPE_FAVORITES = 2
         private const val TYPE_KEY = "TYPE_KEY"
 
         fun newInstanceTodayReport(): BarcodeHistoryListFragment {

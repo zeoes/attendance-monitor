@@ -31,7 +31,7 @@ object BarcodeSaver {
     private const val CSV_FILE_EXTENSION = ".csv"
 
     private val dateFormatter by unsafeLazy {
-        SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+        SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
     }
 
 
@@ -101,27 +101,27 @@ object BarcodeSaver {
     }
 
     private fun convertToJson(barcode: Barcode): String {
-        return convertToJson(barcode.date, barcode.format, barcode.text).toString()
+        return convertToJson(barcode.date, barcode.text, barcode.token).toString()
     }
 
     private fun convertToJson(barcode: ExportBarcode): JSONObject {
-        return convertToJson(barcode.date, barcode.format, barcode.text)
+        return convertToJson(barcode.date, barcode.text, barcode.token)
     }
 
-    private fun convertToJson(date: Long, format: BarcodeFormat, text: String): JSONObject {
+    private fun convertToJson(date: Long, text: String, token: Int): JSONObject {
         return JSONObject()
-            .put("date", dateFormatter.formatOrNull(date))
-            .put("format", format.name)
-            .put("text", text)
+            .put("Date", dateFormatter.formatOrNull(date))
+            .put("Employee ID", text)
+            .put("Token", token)
     }
 
 
     private fun trySaveBarcodeHistoryCsv(context: Context, fileName: String, barcodes: List<ExportBarcode>) {
         val result = StringBuilder()
-            .append("Date,Text,Token\n")
+            .append("Date,Employee ID,Token\n")
 
         barcodes.forEach { barcode ->
-            result.append("${dateFormatter.formatOrNull(barcode.date)},${barcode.text},${barcode.id}\n")
+            result.append("${dateFormatter.formatOrNull(barcode.date)},${barcode.text},${barcode.token}\n")
         }
 
         val newFileName = if (fileName.endsWithIgnoreCase(CSV_FILE_EXTENSION)) {
@@ -135,9 +135,9 @@ object BarcodeSaver {
 
     private fun convertToCsv(barcode: Barcode): String {
         return StringBuilder()
-            .append("Date,Format,Text")
+            .append("Date,Employee ID,Token")
             .append('\n')
-            .append("${dateFormatter.formatOrNull(barcode.date)},${barcode.format},${barcode.text}")
+            .append("${dateFormatter.formatOrNull(barcode.date)},${barcode.text},${barcode.token}")
             .toString()
     }
 
